@@ -8,7 +8,6 @@ function addTipoUsuario(req, res) {
     if (params.nombre) {
         tipoUsuarioNew.nombre = params.nombre;
         tipoUsuarioNew.estado = true;
-
         tipoUsuarioNew.save((err, tipoUsuarioGet) => {
             if (err) return res.status(500).send({ message: 'Error al guardar los datos!' });
             if (tipoUsuarioGet) {
@@ -25,7 +24,6 @@ function addTipoUsuario(req, res) {
 function getTipoUsuario(req, res) {
 
     var params = req.body;
-
     var idTipoUsuario = params.id;
 
     tipoUsuario.findById(idTipoUsuario, (err, tipoUsuarioGet) => {
@@ -36,7 +34,6 @@ function getTipoUsuario(req, res) {
             })
         }
     });
-
 }
 
 function getTipoUsuario2(req, res) {
@@ -71,9 +68,27 @@ function updateTipoUsuario(req, res) {
 
 }
 
+function deleteTipoUsuario(req, res) {
+    var idTipoUsuario = req.params.id;
+    var deleteOne = req.body;
+
+    tipoUsuario.deleteOne(idTipoUsuario, deleteOne, { new: true }, (err, tipoUsuariodeleteOne) => {
+        if (err) return res.status(500).send({ message: 'Error en la peticion' });
+
+        if (tipoUsuariodeleteOne) return res.status(200).send({
+            tipoUsuario: tipoUsuariodeleteOne
+        })
+        else {
+            return res.status(404).send({ messsage: 'No se pudo actualizar!' })
+        }
+    });
+
+}
+
 module.exports = {
     addTipoUsuario,
     getTipoUsuario,
     getTipoUsuario2,
-    updateTipoUsuario
+    updateTipoUsuario,
+    deleteTipoUsuario
 }
