@@ -12,6 +12,8 @@ var tipoUsuario_route = require('./routes/tipoUsuario');
 
 var usuario_route = require('./routes/usuario');
 
+var serv_agencia_route = require('./routes/serv_agencia');
+
 
 // MIDDLEWARES
  app.use(bodyParser.urlencoded({extended:true}));
@@ -35,6 +37,7 @@ app.get('/', (req, res) =>{
 
 app.use('/api', tipoUsuario_route);
 app.use('/api', usuario_route);
+app.use('/api', serv_agencia_route);
 
 
 // EXPORTACION
