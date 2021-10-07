@@ -2,25 +2,21 @@
 
 var express = require('express');
 var bodyParser = require ('body-parser');
+//var bcrypt = require('bcrypt-nodejs');
 
 var app = express();
 
-
-//CARGAR RUTAS
-
+//Para cargar rutas
 var tipoUsuario_route = require('./routes/tipoUsuario');
-
 var usuario_route = require('./routes/usuario');
+var serv_hotel_route = require('./routes/serv_hotel');
 
+//Para middlewares
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 
-// MIDDLEWARES
- app.use(bodyParser.urlencoded({extended:true}));
- app.use(bodyParser.json());
-
-
-// RUTAS 
-
-app.post('/prueba', (req, res) =>{
+//Para rutas
+app.post('/prueba', (req,res) =>{
     console.log(req.body);
     res.status(200).send({
         message : 'Accion de prueba 2'
@@ -35,8 +31,7 @@ app.get('/', (req, res) =>{
 
 app.use('/api', tipoUsuario_route);
 app.use('/api', usuario_route);
+app.use('/api', serv_hotel_route);
 
-
-// EXPORTACION
-
+//Exportacion
 module.exports = app;
