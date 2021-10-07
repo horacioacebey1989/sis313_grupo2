@@ -1,41 +1,35 @@
 'use strict'
 
 var express = require('express');
-var bodyParser = require ('body-parser');
+
+var bodyParser = require('body-parser');
 
 var app = express();
 
-
-//CARGAR RUTAS
-
-var tipoUsuario_route = require('./routes/tipoUsuario');
-
-var usuario_route = require('./routes/usuario');
-
-
-// MIDDLEWARES
- app.use(bodyParser.urlencoded({extended:true}));
- app.use(bodyParser.json());
-
+var indv_usuario_route = require('./routes/indv_usuarioRoute');
+var tipoUsuario_route = require('./routes/tipo_usuarioRoute');
+var serv_restauranteRoute = require('./routes/serv_restauranteRoute');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // RUTAS 
 
-app.post('/prueba', (req, res) =>{
+app.post('/prueba', (req, res) => {
     console.log(req.body);
     res.status(200).send({
-        message : 'Accion de prueba 2'
+        message: 'Accion de prueba 2'
     })
 });
 
-app.get('/', (req, res) =>{
+app.get('/', (req, res) => {
     res.status(200).send({
-        message : 'API REST'
+        message: 'API REST'
     })
 });
 
+app.use('/api', indv_usuario_route);
 app.use('/api', tipoUsuario_route);
-app.use('/api', usuario_route);
-
+app.use('/api', serv_restauranteRoute);
 
 // EXPORTACION
 
