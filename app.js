@@ -9,7 +9,9 @@ var app = express();
 //Para cargar rutas
 var tipoUsuario_route = require('./routes/tipoUsuario');
 var usuario_route = require('./routes/usuario');
+var serv_agencia_route = require('./routes/serv_agencia');
 var serv_hotel_route = require('./routes/serv_hotel');
+
 
 //Para middlewares
 app.use(bodyParser.urlencoded({extended:true}));
@@ -31,7 +33,9 @@ app.get('/', (req, res) =>{
 
 app.use('/api', tipoUsuario_route);
 app.use('/api', usuario_route);
+app.use('/api', serv_agencia_route);
 app.use('/api', serv_hotel_route);
+
 
 //Exportacion
 module.exports = app;
