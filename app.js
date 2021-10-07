@@ -1,20 +1,31 @@
 'use strict'
 
 var express = require('express');
+
 var bodyParser = require('body-parser');
+
+
 
 var app = express();
 
 
-//CARGAR RUTAS
+
+
 var indv_usuario_route = require('./routes/indv_usuarioRoute');
 
-// MIDDLEWARES
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
+var tipoUsuario_route = require('./routes/tipoUsuario');
+
+var usuario_route = require('./routes/usuario');
+
+
+
 // RUTAS 
+
 
 app.post('/prueba', (req, res) => {
     console.log(req.body);
@@ -30,6 +41,10 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api', indv_usuario_route);
+
+app.use('/api', tipoUsuario_route);
+app.use('/api', usuario_route);
+
 
 
 // EXPORTACION

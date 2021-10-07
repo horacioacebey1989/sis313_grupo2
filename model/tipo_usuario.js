@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 var tipo_usuarioSchema = Schema({
     tiposusuario: String,
-    estado: Boolean
+    estado: boolean
 
 });
 
