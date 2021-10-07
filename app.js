@@ -7,7 +7,7 @@ var app = express();
 
 
 //CARGAR RUTAS
-var indv_usuario_route = require('./routes/indv_usuarioRoute');
+
 var restaurante_route =  require('./routes/serv_restaurante');
 // MIDDLEWARES
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
     })
 });
 
-app.use('/api', indv_usuario_route);
+
 app.use('/api', restaurante_route);
 
 // EXPORTACION
