@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var tipo_usuarioSchema = Schema({
-    tiposusuario: String,
+    tipousuario: String,
     estado: Boolean
 
 });

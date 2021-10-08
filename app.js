@@ -1,18 +1,16 @@
 'use strict'
 
 var express = require('express');
+
 var bodyParser = require('body-parser');
 
 var app = express();
 
-
-//CARGAR RUTAS
-
-var restaurante_route =  require('./routes/serv_restaurante');
-// MIDDLEWARES
+var indv_usuario_route = require('./routes/indv_usuarioRoute');
+var tipoUsuario_route = require('./routes/tipo_usuarioRoute');
+var serv_restauranteRoute = require('./routes/serv_restauranteRoute');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 
 // RUTAS 
 
@@ -29,8 +27,9 @@ app.get('/', (req, res) => {
     })
 });
 
-
-app.use('/api', restaurante_route);
+app.use('/api', indv_usuario_route);
+app.use('/api', tipoUsuario_route);
+app.use('/api', serv_restauranteRoute);
 
 // EXPORTACION
 
