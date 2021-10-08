@@ -5,13 +5,8 @@ var tipoUsuario = require('../model/tipo_usuario');
 function addTipoUsuario(req, res) {
     var params = req.body;
     var tipoUsuarioNew = new tipoUsuario();
-<<<<<<< HEAD
     if (params.tipousuario) {
         tipoUsuarioNew.tipousuario = params.tipousuario;
-=======
-    if (params.nombre) {
-        tipoUsuarioNew.nombre = params.nombre;
->>>>>>> 7a65bb750c92392b1a6e251944c82d505e734089
         tipoUsuarioNew.estado = true;
         tipoUsuarioNew.save((err, tipoUsuarioGet) => {
             if (err) return res.status(500).send({ message: 'Error al guardar los datos!' });
