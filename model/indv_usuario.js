@@ -9,6 +9,7 @@ var indv_usuarioSchema = Schema({
     usu_nombre: String,
     usu_email: String,
     usu_contraseña: String,
+    estado: Boolean,
 });
 
-module.exports = mongoose.model("Usuario", indv_usuarioSchema);
+module.exports = mongoose.model("indv_Usuario", indv_usuarioSchema);
