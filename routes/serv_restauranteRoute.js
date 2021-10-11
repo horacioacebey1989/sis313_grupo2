@@ -6,7 +6,6 @@ var serv_restauranteController = require('../controllers/serv_restauranteControl
 
 var api = express.Router();
 
-
 api.post('/addserv_restaurante', serv_restauranteController.addserv_restaurante);
 
 api.get('/getserv_restauranteByID', serv_restauranteController.getserv_restaurante);

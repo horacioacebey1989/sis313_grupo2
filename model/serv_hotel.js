@@ -8,6 +8,7 @@ var serv_hotelSchema = Schema({
     idProveedor: { type: Schema.ObjectId, ref: "indv_proveedor" },
     idServicio: { type: Schema.ObjectId, ref: "tipo_servicio" },
     hotel_nombre: String,
+    estado: Boolean,
     hotel_descripcion: String,
     hotel_direccion: String,
     hotel_telefono: Number,

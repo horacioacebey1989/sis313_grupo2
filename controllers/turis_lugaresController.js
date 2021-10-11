@@ -6,7 +6,7 @@ function addTuris_Lugares(req, res) {
     var params = req.body;
     var turis_lugaresNEW = new turis_lugares();
     if (params.nombre) {
-        turis_lugaresNEW.nombre = params.nombre;
+        turis_lugaresNEW.categoria = params.categoria;
         turis_lugaresNEW.estado = true;
         turis_lugaresNEW.save((err, turis_lugaresGET) => {
             if (err) return res.status(500).send({ message: 'Error al guardar los datos!' });
@@ -21,7 +21,7 @@ function addTuris_Lugares(req, res) {
     }
 }
 
-function getTuris_Lugares1(req, res) {
+function getTuris_Lugares(req, res) {
 
     var params = req.body;
     var idTuris_Lugares = params.id;
@@ -36,7 +36,7 @@ function getTuris_Lugares1(req, res) {
     });
 }
 
-function getTuris_Lugares(req, res) {
+function getTuris_Lugares2(req, res) {
 
     var idTuris_Lugares = req.params.id;
 
@@ -68,27 +68,9 @@ function updateTuris_Lugares(req, res) {
 
 }
 
-function deleteTuris_Lugares(req, res) {
-    var idTuris_Lugares = req.params.id;
-    var deleteOne = req.body;
-
-    turis_lugares.deleteOne(idTuris_Lugares, deleteOne, { new: true }, (err, turisLugaresdeleteOne) => {
-        if (err) return res.status(500).send({ message: 'Error en la peticion' });
-
-        if (turisLugaresdeleteOne) return res.status(200).send({
-            turis_lugares: turisLugaresdeleteOne
-        })
-        else {
-            return res.status(404).send({ messsage: 'No se pudo actualizar!' })
-        }
-    });
-
-}
-
 module.exports = {
     addTuris_Lugares,
-    getTuris_Lugares1,
     getTuris_Lugares,
+    getTuris_Lugares2,
     updateTuris_Lugares,
-    deleteTuris_Lugares
 }
