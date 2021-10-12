@@ -1,4 +1,3 @@
-
 'use strict'
 
 var jwt = require('jwt-simple');
@@ -16,4 +15,3 @@ exports.createToken = function(usuario) {
     };
     return jwt.encode(data, llave_secreta);
 }
-
