@@ -25,4 +25,3 @@ exports.ensureAuth = function(req, res, next) {
     req.usuario = data;
 
     next();
-}
