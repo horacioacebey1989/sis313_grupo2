@@ -1,12 +1,14 @@
 'use strict'
 
-var express = require('express');
-var bodyParser = require ('body-parser');
-//var bcrypt = require('bcrypt-nodejs');
+var indv_usuario_route = require('./routes/indv_usuarioRoute');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 
 var app = express();
 
-//Para cargar rutas
+
 var tipoUsuario_route = require('./routes/tipoUsuario');
 var usuario_route = require('./routes/usuario');
 var serv_agencia_route = require('./routes/serv_agencia');
@@ -17,19 +19,12 @@ var marc_hotspot_route = require('./routes/marc_hotspot');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-//Para rutas
-app.post('/prueba', (req,res) =>{
-    console.log(req.body);
-    res.status(200).send({
-        message : 'Accion de prueba 2'
-    })
-});
 
-app.get('/', (req, res) =>{
-    res.status(200).send({
-        message : 'API REST'
-    })
-});
+// RUTAS 
+
+
+
+app.use('/api', indv_usuario_route);
 
 app.use('/api', tipoUsuario_route);
 app.use('/api', usuario_route);
@@ -37,5 +32,7 @@ app.use('/api', serv_agencia_route);
 app.use('/api', serv_hotel_route);
 app.use('/api', marc_hotspot_route);
 
-//Exportacion
+
+
+// EXPORTACION
 module.exports = app;
