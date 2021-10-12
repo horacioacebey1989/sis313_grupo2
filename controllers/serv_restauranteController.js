@@ -7,8 +7,8 @@ function addserv_restaurante(req, res) {
     var restauranteNew = new serv_restaurante();
     if (params.idProveedor, params.idServicio, params.res_nombre, params.res_descripcion, params.res_direccion, params.res_telefono, params.res_nit, params.res_latitude, params.res_longitud) {
         restauranteNew.idProveedor = params.idProveedor,
-            restauranteNew.idServicio = params.idServicio,
-            restauranteNew.res_nombre = params.res_nombre;
+        restauranteNew.idServicio = params.idServicio,
+        restauranteNew.res_nombre = params.res_nombre;
         restauranteNew.res_descripcion = params.res_descripcion;
         restauranteNew.res_direccion = params.res_direccion;
         restauranteNew.res_telefono = params.res_telefono;
@@ -74,9 +74,27 @@ function updateserv_restaurante(req, res) {
 
 }
 
-module.exports = {
+function deleteserv_restaurante(req, res) {
+    var idserv_restaurante = req.params.id;
+    var deleteOne = req.body;
+
+    serv_restaurante.deleteOne(idserv_restaurante, deleteOne, { new: true }, (err, serv_restaurantedeleteOne) => {
+        if (err) return res.status(500).send({ message: 'Error en la peticion' });
+
+        if (serv_restaurantedeleteOne) return res.status(200).send({
+            serv_restaurante: serv_restaurantedeleteOne
+        })
+        else {
+            return res.status(404).send({ messsage: 'No se pudo actualizar!' })
+        }
+    });
+
+}
+
+module.exports = { 
     addserv_restaurante,
     getserv_restaurante,
     getserv_restaurante2,
-    updateserv_restaurante
+    updateserv_restaurante,
+    deleteserv_restaurante
 }

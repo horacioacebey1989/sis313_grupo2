@@ -61,8 +61,28 @@ function updateServAgencia(req, res) {
 
 }
 
+
+function deleteServAgencia(req, res) {
+    var idServAgencia = req.params.id;
+    var deleteOne = req.body;
+
+    servAgencia.deleteOne(idServAgencia, deleteOne, { new: true }, (err, servAgenciadeleteOne) => {
+        if (err) return res.status(500).send({ message: 'Error en la peticion' });
+
+        if (servAgenciadeleteOne) return res.status(200).send({
+            servAgencia : servAgenciadeleteOne
+        })
+        else {
+            return res.status(404).send({ messsage: 'No se pudo actualizar!' })
+        }
+    });
+
+}
+
 module.exports = {
     addServAgencia,
     getServAgencia,
-    updateServAgencia
+    updateServAgencia,
+    deleteServAgencia
+
 }
