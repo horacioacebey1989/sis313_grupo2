@@ -1,26 +1,24 @@
-'use strict'
-
 var jwt = require('jwt-simple');
 var moment = require('moment');
 var llave_secreta = 'q1w2e3';
 
-exports.ensureAuth = function(req, res, next){
-    if(!req.headers.authorization){
-        return res.status(404).send({message: 'La peticion no tiene cabecera!'});
+exports.ensureAuth = function(req, res, next) {
+    if (!req.headers.authorization) {
+        return res.status(404).send({ message: 'La peticion no tiene cabecera!' });
     }
 
     var token = req.headers.authorization.replace(/['"]+/g, '');
 
-    try{
+    try {
         var data = jwt.decode(token, llave_secreta);
-        if(data.exp <= moment().unix()){
+        if (data.exp <= moment().unix()) {
             return res.status(404).send({
-                message : 'El token ha expirado'
+                message: 'El token ha expirado'
             });
         }
-    }catch(ex){
+    } catch (ex) {
         return res.status(404).send({
-            message : 'Se produjo un error'
+            message: 'Se produjo un error'
         });
     }
 

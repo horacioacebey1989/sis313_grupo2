@@ -4,8 +4,6 @@ var express = require('express');
 
 var tipo_usuarioController = require('../controllers/tipo_usuarioController');
 
-var auth = require('../middlewares/aunthenticated')
-
 var api = express.Router();
 
 api.post('/addTipoUsuario', tipo_usuarioController.addTipoUsuario);
