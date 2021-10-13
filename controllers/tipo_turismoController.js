@@ -84,6 +84,7 @@ function deleteTipoTurismo(req, res) {
     });
 }
 
+
 module.exports = {
     addTipoTurismo,
     getTipoTurismo,

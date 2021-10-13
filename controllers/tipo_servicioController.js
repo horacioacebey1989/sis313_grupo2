@@ -5,8 +5,8 @@ var tipoServicio = require('../model/tipo_Servicio');
 function addTipoServicio(req, res) {
     var params = req.body;
     var tipoServicioNew = new tipoServicio();
-    if (params.nombre) {
-        tipoServicioNew.nombre = params.nombre;
+    if (params.categoria) {
+        tipoServicioNew.categoria = params.categoria;
         tipoServicioNew.estado = true;
         tipoServicioNew.save((err, tipoServicioGet) => {
             if (err) return res.status(500).send({ message: 'Error al guardar los datos!' });
@@ -68,22 +68,6 @@ function updateTipoServicio(req, res) {
 
 }
 
-function deleteTipoServicio(req, res) {
-    var idTipoServicio = req.params.id;
-    var deleteOne = req.body;
-
-    tipoServicio.deleteOne(idTipoServicio, deleteOne, { new: true }, (err, tipoServiciodeleteOne) => {
-        if (err) return res.status(500).send({ message: 'Error en la peticion' });
-
-        if (tipoServiciodeleteOne) return res.status(200).send({
-            tipoServicio: tipoServiciodeleteOne
-        })
-        else {
-            return res.status(404).send({ messsage: 'No se pudo actualizar!' })
-        }
-    });
-
-}
 
 module.exports = {
     addTipoServicio,

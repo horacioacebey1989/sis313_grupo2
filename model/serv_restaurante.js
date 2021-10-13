@@ -8,6 +8,7 @@ var serv_restauranteSchema = Schema({
     idProveedor: { type: Schema.ObjectId, ref: "indv_proveedor" },
     idServicio: { type: Schema.ObjectId, ref: "tipo_servicio" },
     res_nombre: String,
+    estado: Boolean,
     res_descripcion: String,
     res_direccion: String,
     res_telefono: Number,

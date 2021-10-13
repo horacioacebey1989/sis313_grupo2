@@ -11,8 +11,9 @@ function add_indv_usuario(req, res) {
     if (params.tipoUsuario, params.usu_nombre, params.usu_email, params.usu_contraseña) {
         indv_usuarioNew.tipoUsuario = params.tipoUsuario;
         indv_usuarioNew.usu_nombre = params.usu_nombre;
-        indv_usuarioNew.usu_contraseña = params.usu_contraseña;
         indv_usuarioNew.estado = true;
+        indv_usuarioNew.usu_email = params.usu_email;
+        indv_usuarioNew.usu_contraseña = params.usu_contraseña;
         indv_usuarioNew.save((err, indv_usuarioGet) => {
             if (err) return res.status(500).send({ message: 'Error al guardar los datos!' });
             if (indv_usuarioGet) {
@@ -42,9 +43,6 @@ function loginUsuario(req, res) {
     });
 
 }
-
-
-// UPDATE
 
 module.exports = {
     add_indv_usuario,

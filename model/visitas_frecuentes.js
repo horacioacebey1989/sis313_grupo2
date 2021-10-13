@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 var visitas_frecuentesSchema = Schema({
     idUsuario: { type: Schema.ObjectId, ref: "indv_usuario" },
     vis_fecha: Date,
+    estado: Boolean,
     idProveedor: { type: Schema.ObjectId, ref: "indv_proveedor" },
     idHotel: { type: Schema.ObjectId, ref: "serv_hotel" },
     idRestaurante: { type: Schema.ObjectId, ref: "serv_restaurante" },

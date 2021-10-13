@@ -5,8 +5,11 @@ var servHotel = require('../model/serv_hotel');
 function addServHotel(req, res) {
     var params = req.body;
     var servHotelNew = new servHotel();
-    if (params.idProveedor, params.idServicio) {
+    if (params.idProveedor, params.idServicio, params.hotel_nombre, params.hotel_descripcion, params.hotel_direccion, params.hotel_telefono, params.hotel_nit) {
+        servHotelNew.idProveedor = params.idProveedor;
+        servHotelNew.idServicio = params.idServicio;
         servHotelNew.hotel_nombre = params.hotel_nombre;
+        servHotelNew.estado = true,
         servHotelNew.hotel_descripcion = params.hotel_descripcion;
         servHotelNew.hotel_direccion = params.hotel_direccion;
         servHotelNew.hotel_telefono = params.hotel_telefono;
@@ -31,16 +34,16 @@ function getServHotel(req, res) {
     var params = req.body;
     var idServHotel = params.id;
 
-    servHotel .findById(idServHotel , (err, servHotelGet) => {
+
+    servHotel.findById(idServHotel, (err, servHotelGet) => {
         if (err) return res.status(500).send({ message: 'Error en la peticion' });
         if (servHotelGet) {
             return res.status(200).send({
-                servHotel : servHotelGet
+                servHotel: servHotelGet
             })
         }
     });
 }
-
 
 function updateServHotel(req, res) {
     var idServHotel = req.params.id;
@@ -50,7 +53,7 @@ function updateServHotel(req, res) {
         if (err) return res.status(500).send({ message: 'Error en la peticion' });
 
         if (servHotelUpdate) return res.status(200).send({
-            servHotel : servHotelUpdate
+            servHotel: servHotelUpdate
         })
         else {
             return res.status(404).send({ messsage: 'No se pudo actualizar!' })
@@ -82,3 +85,4 @@ module.exports = {
     updateServHotel,
     deleteServHotel
 }
+

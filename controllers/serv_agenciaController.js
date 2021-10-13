@@ -5,8 +5,11 @@ var servAgencia = require('../model/serv_agencia');
 function addServAgencia(req, res) {
     var params = req.body;
     var servAgenciaNew = new servAgencia();
-    if (params.idProveedor, params.idServicio) {
+    if (params.idProveedor, params.idServicio, params.ag_nombre, params.ag_descripcion, params.ag_direccion, params.ag_telefono, params.ag_nit) {
+        servAgenciaNew.idProveedor = params.idProveedor;
+        servAgenciaNew.idServicio = params.idServicio;
         servAgenciaNew.ag_nombre = params.ag_nombre;
+        servAgenciaNew.estado = true;
         servAgenciaNew.ag_descripcion = params.ag_descripcion;
         servAgenciaNew.ag_direccion = params.ag_direccion;
         servAgenciaNew.ag_telefono = params.ag_telefono;
@@ -17,7 +20,7 @@ function addServAgencia(req, res) {
             if (err) return res.status(500).send({ message: 'Error al guardar los datos!' });
             if (servAgenciaGet) {
                 return res.status(200).send({
-                    servAgencia : servAgenciaGet
+                    servAgencia: servAgenciaGet
                 })
             }
         });
@@ -35,12 +38,11 @@ function getServAgencia(req, res) {
         if (err) return res.status(500).send({ message: 'Error en la peticion' });
         if (servAgenciaGet) {
             return res.status(200).send({
-                servAgencia : servAgenciaGet
+                servAgencia: servAgenciaGet
             })
         }
     });
 }
-
 
 function updateServAgencia(req, res) {
     var idServAgencia = req.params.id;
@@ -58,6 +60,7 @@ function updateServAgencia(req, res) {
     });
 
 }
+
 
 function deleteServAgencia(req, res) {
     var idServAgencia = req.params.id;
@@ -81,4 +84,5 @@ module.exports = {
     getServAgencia,
     updateServAgencia,
     deleteServAgencia
+
 }

@@ -5,7 +5,9 @@ var serv_restaurante = require('../model/serv_restaurante');
 function addserv_restaurante(req, res) {
     var params = req.body;
     var restauranteNew = new serv_restaurante();
-    if (params.res_nombre,params.res_descripcion,params.res_direccion,params.res_telefono,params.res_nit,params.res_latitude,params.res_longitud) {
+    if (params.idProveedor, params.idServicio, params.res_nombre, params.res_descripcion, params.res_direccion, params.res_telefono, params.res_nit, params.res_latitude, params.res_longitud) {
+        restauranteNew.idProveedor = params.idProveedor,
+        restauranteNew.idServicio = params.idServicio,
         restauranteNew.res_nombre = params.res_nombre;
         restauranteNew.res_descripcion = params.res_descripcion;
         restauranteNew.res_direccion = params.res_direccion;
