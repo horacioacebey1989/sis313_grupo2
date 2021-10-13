@@ -21,7 +21,6 @@ var serv_agencia_route = require('./routes/serv_agencia');
 var serv_hotel_route = require('./routes/serv_hotel');
 var marc_hotspot_route = require('./routes/marc_hotspot');
 
-//Para middlewares
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
@@ -38,12 +37,16 @@ app.use('/api', tipo_turismo_route);
 app.use('/api', tipo_usuario_route);
 app.use('/api', turis_lugares_route);
 app.use('/api', visitas_frecuentes_route);
+app.use('/api', tipoUsuario_route);
+app.use('/api', serv_restauranteRoute);
+
 
 app.use('/api', tipoUsuario_route);
 app.use('/api', usuario_route);
 app.use('/api', serv_agencia_route);
 app.use('/api', serv_hotel_route);
 app.use('/api', marc_hotspot_route);
+
 
 
 
