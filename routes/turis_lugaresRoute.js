@@ -10,7 +10,7 @@ api.post('/addTuris_Lugares', turis_lugaresController.addTuris_Lugares);
 
 api.get('/getTuris_LugaresByID', turis_lugaresController.getTuris_Lugares);
 
-api.get('/getTuris_LugaresByID/:id', turis_lugaresController.getTuris_Lugares2);
+api.get('/getTuris_Lugares', turis_lugaresController.getTuris_Lugares2);
 
 api.put('/updateTuris_Lugares/:id', turis_lugaresController.updateTuris_Lugares);
 

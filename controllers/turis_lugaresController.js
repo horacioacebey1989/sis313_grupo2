@@ -5,8 +5,13 @@ var turis_lugares = require('../model/turis_lugares');
 function addTuris_Lugares(req, res) {
     var params = req.body;
     var turis_lugaresNEW = new turis_lugares();
-    if (params.nombre) {
-        turis_lugaresNEW.categoria = params.categoria;
+    if (params.turis_nombre, params.turis_descripcion, params.turis_direccion, params.turis_latitude, params.turis_longitud) {
+        turis_lugaresNEW.turis_nombre = params.turis_nombre;
+        turis_lugaresNEW.turis_descripcion = params.turis_descripcion;
+        turis_lugaresNEW.turis_direccion = params.turis_direccion;
+        turis_lugaresNEW.turis_telefono = params.turis_telefono;
+        turis_lugaresNEW.turis_latitude = params.turis_latitude;
+        turis_lugaresNEW.turis_longitud = params.turis_longitud;
         turis_lugaresNEW.estado = true;
         turis_lugaresNEW.save((err, turis_lugaresGET) => {
             if (err) return res.status(500).send({ message: 'Error al guardar los datos!' });
@@ -38,9 +43,7 @@ function getTuris_Lugares(req, res) {
 
 function getTuris_Lugares2(req, res) {
 
-    var idTuris_Lugares = req.params.id;
-
-    turis_lugares.findById(idTuris_Lugares, (err, turis_lugaresGET) => {
+    turis_lugares.find({ visible: true }, (err, turis_lugaresGET) => {
         if (err) return res.status(500).send({ message: 'Error en la peticion' });
         if (turis_lugaresGET) {
             return res.status(200).send({
