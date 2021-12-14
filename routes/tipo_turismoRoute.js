@@ -8,10 +8,12 @@ var api = express.Router();
 
 api.post('/addTipoTurismo', tipo_turismoController.addTipoTurismo);
 
-api.get('/getTipoTurismoByID', tipo_turismoController.getTipoTurismo);
+api.get('/getTipoTurismo/:id', tipo_turismoController.getTipoTurismo);
 
-api.get('/getTipoTurismoByID/:id', tipo_turismoController.getTipoTurismo2);
+api.get('/getTipoTurismoList', tipo_turismoController.getTipoTurismoList);
 
 api.put('/updateTipoturismo/:id', tipo_turismoController.updateTipoTurismo);
+
+api.put('/deleteTipoTurismo/:id', tipo_turismoController.deleteTipoTurismo);
 
 module.exports = api;

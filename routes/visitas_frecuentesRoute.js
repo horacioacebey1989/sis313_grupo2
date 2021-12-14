@@ -10,7 +10,7 @@ api.post('/addvisitas_frecuentes', visitas_frecuentesController.addvisitas_frecu
 
 api.get('/getvisitas_frecuentesByID', visitas_frecuentesController.getvisitas_frecuentes);
 
-api.get('/getvisitas_frecuentesByID/:id', visitas_frecuentesController.getvisitas_frecuentes2);
+api.get('/getvisitas_FrecuentesList', visitas_frecuentesController.getvisitas_FrecuentesList);
 
 api.put('/updatevisitas_frecuentes/:id', visitas_frecuentesController.updatevisitas_frecuentes);
 

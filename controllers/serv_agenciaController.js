@@ -2,10 +2,11 @@
 
 var servAgencia = require('../model/serv_agencia');
 
+//FUNCIÓN PARA AGREGAR DATOS A ESTA TABLA
 function addServAgencia(req, res) {
     var params = req.body;
     var servAgenciaNew = new servAgencia();
-    if (params.idProveedor, params.idServicio, params.ag_nombre, params.ag_descripcion, params.ag_direccion, params.ag_telefono, params.ag_nit) {
+    if (params.ag_nombre) {
         servAgenciaNew.idProveedor = params.idProveedor;
         servAgenciaNew.idServicio = params.idServicio;
         servAgenciaNew.ag_nombre = params.ag_nombre;
@@ -29,6 +30,7 @@ function addServAgencia(req, res) {
     }
 }
 
+//FUNCIÓN PARA RECIBIR DATOS A ESTA TABLA POR ID
 function getServAgencia(req, res) {
 
     var params = req.body;
@@ -44,6 +46,21 @@ function getServAgencia(req, res) {
     });
 }
 
+//FUNCIÓN PARA RECIBIR DATOS A ESTA TABLA SIN NECESIDAD DEL ID
+function get_servAgenciaList(req, res) {
+
+    servAgencia.find({ visible: true }, (err, servAgenciaGET) => {
+        if (err) return res.status(500).send({ message: 'Error en la peticion' });
+        if (servAgenciaGET) {
+            return res.status(200).send({
+                servAgencia: servAgenciaGET
+            })
+        }
+    });
+
+}
+
+//FUNCIÓN PARA ACTUALIZAR ESTA TABLA
 function updateServAgencia(req, res) {
     var idServAgencia = req.params.id;
     var update = req.body;
@@ -61,8 +78,27 @@ function updateServAgencia(req, res) {
 
 }
 
+//FUNCIÓN PARA CAMBIAR EL ESTADO DE "TRUE" A FALSE
+function deleteservAgencia(req, res) {
+    var idservAgencia = req.params.id;
+
+    servAgencia.findByIdAndUpdate(idservAgencia, { "estado": false }, { new: true }, (err, servAgenciaUpdate) => {
+        if (err) return res.status(500).send({ message: 'Error en la peticion' });
+
+        if (deleteservAgencia) return res.status(200).send({
+            servAgencia: deleteservAgencia
+        })
+        else {
+            return res.status(404).send({ messsage: 'No se pudo actualizar!' })
+        }
+    });
+
+}
+
 module.exports = {
     addServAgencia,
     getServAgencia,
-    updateServAgencia
+    get_servAgenciaList,
+    updateServAgencia,
+    deleteservAgencia
 }

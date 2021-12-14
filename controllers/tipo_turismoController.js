@@ -2,6 +2,7 @@
 
 var tipoTurismo = require('../model/tipo_turismo');
 
+//FUNCIÓN PARA AGREGAR DATOS A ESTA TABLA
 function addTipoTurismo(req, res) {
     var params = req.body;
     var tipoTurismoNew = new tipoTurismo();
@@ -21,6 +22,7 @@ function addTipoTurismo(req, res) {
     }
 }
 
+//FUNCIÓN PARA RECIBIR DATOS A ESTA TABLA POR ID
 function getTipoTurismo(req, res) {
 
     var params = req.body;
@@ -36,21 +38,20 @@ function getTipoTurismo(req, res) {
     });
 }
 
-function getTipoTurismo2(req, res) {
-
-    var idtipoTurismo = req.params.id;
-
-    tipoTurismo.findById(idtipoTurismo, (err, tipoTurismoGet) => {
+//FUNCIÓN PARA RECIBIR DATOS A ESTA TABLA SIN NECESIDAD DEL ID
+function getTipoTurismoList(req, res) {
+    tipoTurismo.find({ estado: true }, (err, tipoTurismoGET) => {
         if (err) return res.status(500).send({ message: 'Error en la peticion' });
-        if (tipoTurismoGet) {
+        if (tipoTurismoGET) {
             return res.status(200).send({
-                tipoTurismo: tipoTurismoGet
+                tipoTurismo: tipoTurismoGET
             })
         }
     });
 
 }
 
+//FUNCIÓN PARA ACTUALIZAR ESTA TABLA
 function updateTipoTurismo(req, res) {
     var idtipoTurismo = req.params.id;
     var update = req.body;
@@ -68,10 +69,29 @@ function updateTipoTurismo(req, res) {
 
 }
 
+//FUNCIÓN PARA CAMBIAR EL ESTADO DE "TRUE" A FALSE
+function deleteTipoTurismo(req, res) {
+    var idtipoTurismo = req.params.id;
+
+    tipoTurismo.findByIdAndUpdate(idtipoTurismo, { "estado": false }, { new: true }, (err, tipoTurismoUpdate) => {
+        if (err) return res.status(500).send({ message: 'Error en la peticion' });
+
+        if (deleteTipoTurismo) return res.status(200).send({
+            tipoTurismo: deleteTipoTurismo
+        })
+        else {
+            return res.status(404).send({ messsage: 'No se pudo actualizar!' })
+        }
+    });
+
+}
+
+
 
 module.exports = {
     addTipoTurismo,
     getTipoTurismo,
-    getTipoTurismo2,
-    updateTipoTurismo
+    getTipoTurismoList,
+    updateTipoTurismo,
+    deleteTipoTurismo
 }

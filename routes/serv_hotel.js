@@ -8,8 +8,12 @@ var api = express.Router();
 
 api.post('/addServHotel', serv_hotelController.addServHotel);
 
-api.get('/getServHotel', serv_hotelController.getServHotel);
+api.get('/getServHotel/:id', serv_hotelController.getServHotel);
 
-api.put('/updateServHotel', serv_hotelController.updateServHotel);
+api.get('/get_servHotelList', serv_hotelController.get_servHotelList);
+
+api.put('/updateServHotel/:id', serv_hotelController.updateServHotel);
+
+api.put('/deleteservHotel/:id', serv_hotelController.deleteservHotel);
 
 module.exports = api;
