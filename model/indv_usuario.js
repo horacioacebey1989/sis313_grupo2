@@ -1,15 +1,10 @@
-"use strict";
+const mongoose = require("mongoose");
 
-var mongoose = require("mongoose");
-
-var Schema = mongoose.Schema;
-
-var indv_usuarioSchema = Schema({
-    tipoUsuario: { type: Schema.ObjectId, ref: "tipo_usuario" },
-    usu_nombre: String,
+const usuarioSchema = new mongoose.Schema({
+    usu_nombre: { type: String, require: true, max: 20, unique: true, },
     estado: Boolean,
-    usu_email: String,
-    usu_contraseña: String,
-});
+    usu_email: { type: String, require: true, max: 50, unique: true, },
+    usu_contrasena: { type: String, require: true, min: 5 }
+}, { timestamps: true });
 
-module.exports = mongoose.model("indv_Usuario", indv_usuarioSchema);
+module.exports = mongoose.model("Usuario", usuarioSchema);

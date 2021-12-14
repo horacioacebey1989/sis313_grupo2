@@ -2,9 +2,11 @@
 
 var serv_restaurante = require('../model/serv_restaurante');
 
+//FUNCIÓN PARA AGREGAR DATOS A ESTA TABLA
 function addserv_restaurante(req, res) {
     var params = req.body;
     var restauranteNew = new serv_restaurante();
+
     if (params.idProveedor, params.idServicio, params.res_nombre, params.res_descripcion, params.res_direccion, params.res_telefono, params.res_nit, params.res_latitude, params.res_longitud) {
         restauranteNew.idProveedor = params.idProveedor,
         restauranteNew.idServicio = params.idServicio,
@@ -12,8 +14,9 @@ function addserv_restaurante(req, res) {
         restauranteNew.res_descripcion = params.res_descripcion;
         restauranteNew.res_direccion = params.res_direccion;
         restauranteNew.res_telefono = params.res_telefono;
-        restauranteNew.res_latitude = params.res_latitude;
-        restauranteNew.res_longitud = params.res_longitud;
+        restauranteNew.res_nit = params.res_nit;
+        //    restauranteNew.res_latitude = params.res_latitude;
+        //    restauranteNew.res_longitud = params.res_longitud;
         restauranteNew.save((err, restauranteGet) => {
             if (err) return res.status(500).send({ message: 'Error al guardar los datos!' });
             if (restauranteGet) {
@@ -27,6 +30,7 @@ function addserv_restaurante(req, res) {
     }
 }
 
+//FUNCIÓN PARA RECIBIR DATOS A ESTA TABLA POR ID
 function getserv_restaurante(req, res) {
 
     var params = req.body;
@@ -42,21 +46,21 @@ function getserv_restaurante(req, res) {
     });
 }
 
-function getserv_restaurante2(req, res) {
+//FUNCIÓN PARA RECIBIR DATOS A ESTA TABLA SIN NECESIDAD DEL ID
+function getserv_restauranteList(req, res) {
 
-    var idserv_restaurante = req.params.id;
-
-    serv_restaurante.findById(idserv_restaurante, (err, serv_restauranteGet) => {
+    serv_restaurante.find({ visible: true }, (err, serv_restauranteGET) => {
         if (err) return res.status(500).send({ message: 'Error en la peticion' });
-        if (serv_restauranteGet) {
+        if (serv_restauranteGET) {
             return res.status(200).send({
-                serv_restaurante: serv_restauranteGet
+                serv_restaurante: serv_restauranteGET
             })
         }
     });
 
 }
 
+//FUNCIÓN PARA ACTUALIZAR ESTA TABLA
 function updateserv_restaurante(req, res) {
     var idserv_restaurante = req.params.id;
     var update = req.body;
@@ -74,6 +78,7 @@ function updateserv_restaurante(req, res) {
 
 }
 
+
 function deleteserv_restaurante(req, res) {
     var idserv_restaurante = req.params.id;
     var deleteOne = req.body;
@@ -90,6 +95,7 @@ function deleteserv_restaurante(req, res) {
     });
 
 }
+
 
 module.exports = { 
     addserv_restaurante,

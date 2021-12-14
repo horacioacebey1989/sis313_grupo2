@@ -8,10 +8,12 @@ var api = express.Router();
 
 api.post('/addTipoServicio', tipo_servicioController.addTipoServicio);
 
-api.get('/getTipoServicioByID', tipo_servicioController.getTipoServicio);
+api.get('/getTipoServicio/:id', tipo_servicioController.getTipoServicio);
 
-api.get('/getTipoServicioByID/:id', tipo_servicioController.getTipoServicio2);
+api.get('/get_TipoServicioList', tipo_servicioController.get_TipoServicioList);
 
 api.put('/updateTipoServicio/:id', tipo_servicioController.updateTipoServicio);
+
+api.put('/deletetipoServicio/:id', tipo_servicioController.deletetipoServicio);
 
 module.exports = api;

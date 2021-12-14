@@ -2,10 +2,11 @@
 
 var visitas_frecuentes = require('../model/visitas_frecuentes');
 
+//FUNCIÓN PARA AGREGAR DATOS A ESTA TABLA
 function addvisitas_frecuentes(req, res) {
     var params = req.body;
     var visitas_frecuentesNew = new visitas_frecuentes();
-    if (params.idUsuario, params.vis_fecha, params.idProveedor, params.idHotel, params.idRestaurante, params.idAgencia) {
+    if (params.idUsuario) {
         visitas_frecuentesNew.idUsuario = params.idUsuario;
         visitas_frecuentesNew.vis_fecha = params.vis_fecha;
         visitas_frecuentesNew.estado = true;
@@ -26,6 +27,7 @@ function addvisitas_frecuentes(req, res) {
     }
 }
 
+//FUNCIÓN PARA RECIBIR DATOS A ESTA TABLA POR ID
 function getvisitas_frecuentes(req, res) {
 
     var params = req.body;
@@ -41,21 +43,21 @@ function getvisitas_frecuentes(req, res) {
     });
 }
 
-function getvisitas_frecuentes2(req, res) {
+//FUNCIÓN PARA RECIBIR DATOS A ESTA TABLA SIN NECESIDAD DEL ID
+function getvisitas_FrecuentesList(req, res) {
 
-    var idvisitas_frecuentes = req.params.id;
-
-    visitas_frecuentes.findById(idvisitas_frecuentes, (err, visitas_frecuentesGet) => {
+    visitas_frecuentes.find({ visible: true }, (err, visitas_frecuentesGET) => {
         if (err) return res.status(500).send({ message: 'Error en la peticion' });
-        if (visitas_frecuentesGet) {
+        if (visitas_frecuentesGET) {
             return res.status(200).send({
-                visitas_frecuentes: visitas_frecuentesGet
+                visitas_frecuentes: visitas_frecuentesGET
             })
         }
     });
 
 }
 
+//FUNCIÓN PARA ACTUALIZAR ESTA TABLA
 function updatevisitas_frecuentes(req, res) {
     var idvisitas_frecuentes = req.params.id;
     var update = req.body;
@@ -73,10 +75,9 @@ function updatevisitas_frecuentes(req, res) {
 
 }
 
-
 module.exports = {
     addvisitas_frecuentes,
     getvisitas_frecuentes,
-    getvisitas_frecuentes2,
+    getvisitas_FrecuentesList,
     updatevisitas_frecuentes,
 }

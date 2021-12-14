@@ -2,10 +2,11 @@
 
 var servHotel = require('../model/serv_hotel');
 
+//FUNCIÓN PARA AGREGAR DATOS A ESTA TABLA
 function addServHotel(req, res) {
     var params = req.body;
     var servHotelNew = new servHotel();
-    if (params.idProveedor, params.idServicio, params.hotel_nombre, params.hotel_descripcion, params.hotel_direccion, params.hotel_telefono, params.hotel_nit) {
+    if (params.hotel_nombre) {
         servHotelNew.idProveedor = params.idProveedor;
         servHotelNew.idServicio = params.idServicio;
         servHotelNew.hotel_nombre = params.hotel_nombre;
@@ -29,6 +30,7 @@ function addServHotel(req, res) {
     }
 }
 
+//FUNCIÓN PARA RECIBIR DATOS A ESTA TABLA POR ID
 function getServHotel(req, res) {
 
     var params = req.body;
@@ -45,6 +47,21 @@ function getServHotel(req, res) {
     });
 }
 
+//FUNCIÓN PARA RECIBIR DATOS A ESTA TABLA SIN NECESIDAD DEL ID
+function get_servHotelList(req, res) {
+
+    servHotel.find({ visible: true }, (err, servHotelGET) => {
+        if (err) return res.status(500).send({ message: 'Error en la peticion' });
+        if (servHotelGET) {
+            return res.status(200).send({
+                servHotel: servHotelGET
+            })
+        }
+    });
+
+}
+
+//FUNCIÓN PARA ACTUALIZAR ESTA TABLA
 function updateServHotel(req, res) {
     var idServHotel = req.params.id;
     var update = req.body;
@@ -62,6 +79,7 @@ function updateServHotel(req, res) {
 
 }
 
+
 function deleteServHotel(req, res) {
     var idServHotel = req.params.id;
     var deleteOne = req.body;
@@ -78,6 +96,7 @@ function deleteServHotel(req, res) {
     });
 
 }
+
 
 module.exports = {
     addServHotel,

@@ -9,6 +9,7 @@ var auth = require('../middlewares/aunthenticated')
 var api = express.Router();
 
 
+
 api.post('/addServAgencia', serv_agenciaController.addServAgencia);
 api.get('/getServAgencia', serv_agenciaController.getServAgencia);
 api.get('/updateServAgencia', serv_agenciaController.updateServAgencia);
