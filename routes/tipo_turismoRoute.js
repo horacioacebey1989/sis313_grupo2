@@ -14,6 +14,8 @@ api.get('/getTipoTurismoList', tipo_turismoController.getTipoTurismoList);
 
 api.put('/updateTipoturismo/:id', tipo_turismoController.updateTipoTurismo);
 
+
 api.put('/deleteTipoTurismo/:id', tipo_turismoController.deleteTipoTurismo);
+
 
 module.exports = api;

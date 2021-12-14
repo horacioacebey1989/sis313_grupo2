@@ -78,15 +78,17 @@ function updateServAgencia(req, res) {
 
 }
 
-//FUNCIÓN PARA CAMBIAR EL ESTADO DE "TRUE" A FALSE
-function deleteservAgencia(req, res) {
-    var idservAgencia = req.params.id;
 
-    servAgencia.findByIdAndUpdate(idservAgencia, { "estado": false }, { new: true }, (err, servAgenciaUpdate) => {
+
+function deleteServAgencia(req, res) {
+    var idServAgencia = req.params.id;
+    var deleteOne = req.body;
+
+    servAgencia.deleteOne(idServAgencia, deleteOne, { new: true }, (err, servAgenciadeleteOne) => {
         if (err) return res.status(500).send({ message: 'Error en la peticion' });
 
-        if (deleteservAgencia) return res.status(200).send({
-            servAgencia: deleteservAgencia
+        if (servAgenciadeleteOne) return res.status(200).send({
+            servAgencia : servAgenciadeleteOne
         })
         else {
             return res.status(404).send({ messsage: 'No se pudo actualizar!' })
@@ -98,7 +100,9 @@ function deleteservAgencia(req, res) {
 module.exports = {
     addServAgencia,
     getServAgencia,
+
     get_servAgenciaList,
     updateServAgencia,
     deleteservAgencia
+
 }

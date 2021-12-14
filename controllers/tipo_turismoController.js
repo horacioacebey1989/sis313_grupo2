@@ -69,29 +69,28 @@ function updateTipoTurismo(req, res) {
 
 }
 
-//FUNCIÓN PARA CAMBIAR EL ESTADO DE "TRUE" A FALSE
+
+
 function deleteTipoTurismo(req, res) {
-    var idtipoTurismo = req.params.id;
+    var idTipoTurismo = req.params.id;
 
-    tipoTurismo.findByIdAndUpdate(idtipoTurismo, { "estado": false }, { new: true }, (err, tipoTurismoUpdate) => {
-        if (err) return res.status(500).send({ message: 'Error en la peticion' });
+    tipoTurismo.findByIdAndUpdate(idTipoTurismo, { "visible": false }, (err, TipoTurismodelete) => {
 
-        if (deleteTipoTurismo) return res.status(200).send({
-            tipoTurismo: deleteTipoTurismo
-        })
-        else {
-            return res.status(404).send({ messsage: 'No se pudo actualizar!' })
-        }
+         if (err) return res.status(500).send({ message: 'Error en la peticion' });
+
+         if (TipoTurismodelete) return res.status(200).send({
+             tipoTurismo: TipoTurismodelete
+            })
+            else {
+                 return res.status(404).send({ messsage: 'No se pudo eliminar!' })
+            }
     });
-
 }
-
-
 
 module.exports = {
     addTipoTurismo,
     getTipoTurismo,
-    getTipoTurismoList,
+    getTipoTurismo2,
     updateTipoTurismo,
     deleteTipoTurismo
 }
